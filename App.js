@@ -16,7 +16,11 @@ export default function App() {
       if (json.success) {
         const {data} = json;
         setPage(data.current_page);
-        setFoods([...foods, ...data.data])
+        if (reset) {
+          setFoods(data.data)
+        } else {
+          setFoods([...foods, ...data.data])
+        }
       }
     } finally {
       setIsLoading(false);
